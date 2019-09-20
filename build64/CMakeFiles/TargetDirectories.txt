@@ -1,0 +1,3 @@
+C:/solutions/Building-Computer-Vision-Projects-with-OpenCV4-and-CPlusPlus/Chapter05/build64/CMakeFiles/Chapter5.dir
+C:/solutions/Building-Computer-Vision-Projects-with-OpenCV4-and-CPlusPlus/Chapter05/build64/CMakeFiles/ALL_BUILD.dir
+C:/solutions/Building-Computer-Vision-Projects-with-OpenCV4-and-CPlusPlus/Chapter05/build64/CMakeFiles/ZERO_CHECK.dir
