@@ -194,6 +194,15 @@ int main( int argc, const char** argv )
 
     Mat frame, img;
 
+    // Capture the current frame
+    cap >> frame;
+
+    if (frame.empty())
+    {
+        cerr << "No image in the file. Exiting!" << endl;
+        return -1;
+    }
+
     // Iterate until the user presses the Esc key
     while (true)
     {
@@ -201,11 +210,6 @@ int main( int argc, const char** argv )
         // Create the Multiple Image Window
         miw = make_shared<MultipleImageWindow>("Main window", 3, 2, WINDOW_AUTOSIZE);
 
-        // Capture the current frame
-        cap >> frame;
-
-        if (frame.empty())
-            break;
 
         // Convert to grayscale
         cvtColor(frame, img, COLOR_BGR2GRAY);
@@ -268,6 +272,15 @@ int main( int argc, const char** argv )
     auto ch = waitKey(10);
     if (ch == 27)
         break;
+
+    // Capture the current frame
+    cap >> frame;
+
+    if (frame.empty())
+    {
+        waitKey(0);
+        break;
+    }
 
     }
 
