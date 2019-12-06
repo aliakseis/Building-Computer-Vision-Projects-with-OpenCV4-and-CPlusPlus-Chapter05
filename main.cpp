@@ -181,31 +181,31 @@ int main(int argc, const char** argv)
         // create a video capture object to read videos
         cv::VideoCapture cap(img_file);
 
+        Mat frame;
+
         if (!cap.isOpened())
         {
-            cerr << "Unable to open the file. Exiting!" << endl;
-            return -1;
+            frame = cv::imread(img_file);
+            if (frame.empty())
+            {
+                cerr << "Unable to open the file. Exiting!" << endl;
+                return -1;
+            }
+        }
+        else
+        {
+            // Capture the current frame
+            cap >> frame;
         }
 
-
-        // Load image to process
-        //Mat img= imread(img_file, 0);
-        //if(img.data==NULL){
-        //	cout << "Error loading image "<< img_file << endl;
-        //	return 0;
-        //}
-
-
-        Mat frame, img;
-
-        // Capture the current frame
-        cap >> frame;
 
         if (frame.empty())
         {
             cerr << "No image in the file. Exiting!" << endl;
             return -1;
         }
+
+        Mat img;
 
         // Iterate until the user presses the Esc key
         while (true)
@@ -220,7 +220,8 @@ int main(int argc, const char** argv)
 
             // Remove noise
             Mat img_noise, img_box_smooth;
-            medianBlur(img, img_noise, 3);
+            medianBlur(img, img_noise, 5);
+
             blur(img, img_box_smooth, Size(3, 3));
 
             // Load image to process
